@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "main": "dist/main.js",
   "scripts": {
-    "start": "nest start",
-    "build": "nest build"
+    "build": "nest build",
+    "start": "node dist/main",
+    "start:dev": "nest start --watch",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
