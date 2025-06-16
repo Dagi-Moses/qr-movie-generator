@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>QR Code</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+  
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    #qr {
+  width: 250px;         /* Preferred size on desktop */
+  max-width: 500px;      /* Responsive limit on small screens */
+  min-width: 200px;     /* Prevents it from becoming too tiny */
+  height: auto;         /* Keeps image ratio intact */
+}
+
+
+
+
+
+
+  </style>
+</head>
+
+<body>
+
+  <img id="qr" src="<%= qr %>" alt="QR Code" />
+ 
+
+  <script>
+    async function refreshQr() {
+      try {
+        const res = await fetch('/api/qr');
+        const data = await res.json();
+        document.getElementById('qr').src = data.qr;
+      } catch (err) {
+        console.error('Failed to refresh QR', err);
+      }
+    }
+
+    setInterval(refreshQr, 10000);
+  </script>
+</body>
+
+</html>
